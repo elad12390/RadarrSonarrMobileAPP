@@ -1,0 +1,15 @@
+
+.movie-card {
+  min-height: 200px;
+  max-height: 270px;
+  div.movie-img-container {
+    overflow: hidden;
+    max-width: 130px;
+    min-width: 100px;
+    height: 200px;
+    img.movie-img {
+      height: 200px;
+      width: 100%;
+    }
+  }
+}

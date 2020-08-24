@@ -1,0 +1,27 @@
+<ng-container *ngIf="movie.isRemote; then remoteMovieRef else localMovieRef"></ng-container>
+<ng-template #localMovieRef>
+  <mat-list-item>
+    <mat-card class="movie-card" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1rem">
+      <div class="movie-img-container"><img class="movie-img" *ngIf="movie.images[0].url else noImage" src="{{localBaseUrl}}{{movie.images[0].url}}" alt="image"/></div>
+      <h3>{{movie.title}}</h3>
+    </mat-card>
+  </mat-list-item>
+</ng-template>
+<ng-template #remoteMovieRef>
+  <mat-list-item>
+    <mat-card class="movie-card" fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="1rem">
+      <div class="movie-img-container"><img class="movie-img" *ngIf="remoteMovie.remotePoster else noImage" src="{{remoteMovie.remotePoster}}" alt="image"/></div>
+      <div fxLayout="column" fxLayoutAlign="center center" fxLayoutGap=".5rem">
+        <h3>{{remoteMovie.title}}</h3>
+        <div *ngIf="!loadingAdd">
+          <button mat-raised-button *ngIf="isAdded === false" (click)="addMovie(remoteMovie)">Add</button>
+          <button mat-raised-button *ngIf="isAdded === false" (click)="addAndSearchMovie(remoteMovie)">Add and search</button>
+        </div>
+      </div>
+    </mat-card>
+  </mat-list-item>
+</ng-template>
+
+<ng-template #noImage>
+  <img class="movie-img" src="assets/images/missing-image.png"/>
+</ng-template>

@@ -1,0 +1,22 @@
+<div fxLayout="column" fxLayoutAlign="center center">
+  <div class="radarr-container" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="1rem" *ngIf="moviesList$ | async">
+    <form [formGroup]="searchForm">
+      <mat-form-field>
+        <mat-label>Search box</mat-label>
+        <input matInput type="search"  [formControl]="searchForm.searchTerm"/>
+      </mat-form-field>
+    </form>
+
+    <div *ngIf="(filteredMovies$ | async) as movies">
+      <cdk-virtual-scroll-viewport *ngIf="movies" class="list" fxLayout="column" fxLayoutAlign="start stretch" fxLayoutGap="1rem" itemSize="272">
+        <app-list-item *cdkVirtualFor="let movie of movies; templateCacheSize: 0"
+                       [movie]="movie"
+                       [localBaseUrl]="baseUrl"
+                       [loadingAdd]="movie.isLoading"
+                       (add)="addMovie($event)"
+        ></app-list-item>
+      </cdk-virtual-scroll-viewport>
+    </div>
+    <a mat-raised-button routerLink="">Home</a>
+  </div>
+</div>

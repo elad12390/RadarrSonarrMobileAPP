@@ -1,0 +1,14 @@
+<div class="settings-menu" fxLayout="column" fxLayoutGap=".5rem" fxLayoutAlign="center center">
+  <div style="width: 200px" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <button mat-raised-button (click)="toggleRadarrSettings()">Edit Radarr settings</button>
+    <mat-card [@openClose]="editRadarrFormState$ | async" *ngIf="editRadarrHide$ | async">
+      <app-config-edit-form [formType]="'Radarr'"></app-config-edit-form>
+    </mat-card>
+  </div>
+  <div style="width: 200px" fxLayout="column" fxLayoutAlign="start center" fxLayoutGap="1rem">
+    <button mat-raised-button (click)="toggleSonarrSettings()">Edit Sonarr settings</button>
+    <mat-card [@openClose]="editSonarrFormState$ | async" *ngIf="editSonarrHide$ | async">
+      <app-config-edit-form [formType]="'Sonarr'"></app-config-edit-form>
+    </mat-card>
+  </div>
+</div>
